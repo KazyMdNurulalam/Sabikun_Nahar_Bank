@@ -14,7 +14,8 @@ body {
     box-shadow: 5px 5px 10px gray;
 }
 .result{
-    margin: 50px;
+    color: white;
+    margin: 70px;
     padding: 50px;
     border-radius: 10px;
 }
