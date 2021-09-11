@@ -27,15 +27,15 @@
     <div id="transectionArea">
         <div class="row align-items-center">
             <section class="result col bg-primary">
-                <h3>Deposit</h3>
-                <h1>$ <span id="totalDeposit">00</span> </h1>
+                <h4>Deposit</h4>
+                <h1>$ <span id="currentDeposit">00</span> </h1>
             </section>
             <section class="result col bg-info">
-                <h3>Withdraw</h3>
+                <h4>Withdraw</h4>
                 <h1>$ <span id="totalWithdraw">00</span></h1>
             </section>
             <section class="result col bg-success">
-                <h3>Balance</h3>
+                <h4>Balance</h4>
                 <h1>$ <span id="totalBalance">2200</span></h1>
             </section>
         </div>
@@ -70,33 +70,59 @@
 
         var depositBtn = document.getElementById('depositBtn');
         depositBtn.addEventListener('click', function () {
-            var depositInput = document.getElementById('depositInput').value;
-            var depositNumber = parseFloat(depositInput);
-            var totalDeposit = document.getElementById('totalDeposit').innerText;
-            var totalDepositAmount = parseFloat(totalDeposit);
-            totalDepositAmount = depositNumber + totalDepositAmount;
-            document.getElementById('totalDeposit').innerText = totalDepositAmount
+            // var depositInput = document.getElementById('depositInput').value;
+            // var depositNumber = parseFloat(depositInput);
+            var depositNumber = getInputNumber('depositInput')
             document.getElementById('depositInput').value = '';
-            var totalBalance = document.getElementById('totalBalance').innerText;
-            var totalBalanceAmount = parseFloat(totalBalance);
-            document.getElementById('totalBalance').innerText = depositNumber + totalBalanceAmount;
-        })
 
+            // var currentDeposit = document.getElementById('currentDeposit').innerText;
+            // var totalDepositAmount = parseFloat(currentDeposit);
+            // totalDepositAmount = depositNumber + totalDepositAmount;
+            // document.getElementById('currentDeposit').innerText = totalDepositAmount
+            updateSpanTex('currentDeposit' , depositNumber);
+            
+            // var totalBalance = document.getElementById('totalBalance').innerText;
+            // var totalBalanceAmount = parseFloat(totalBalance);
+            // totalBalanceAmount = depositNumber + totalBalanceAmount;
+            // document.getElementById('totalBalance').innerText = totalBalanceAmount;
+            updateSpanTex('totalBalance' , depositNumber);
+
+            
+        })
+        
         // withdraw button click handler
         var withdrawBtn = document.getElementById('withdrawBtn');
         withdrawBtn.addEventListener('click', function () {
-            var withdrawInput = document.getElementById('withdrawInput').value;
-            var withdrawInputAmount = parseFloat(withdrawInput);
+            // var withdrawInput = document.getElementById('withdrawInput').value;
+            // var withdrawNumber = parseFloat(withdrawInput);
+            var withdrawNumber = getInputNumber('withdrawInput')
             document.getElementById('withdrawInput').value = ''
-            var totalWithdraw = document.getElementById('totalWithdraw').innerText;
-            var totalWithdrawAmount = parseFloat(totalWithdraw);
-            document.getElementById('totalWithdraw').innerText = withdrawInputAmount + totalWithdrawAmount
-            var totalBalance = document.getElementById('totalBalance').innerText;
-            var totalBalanceAmount = parseFloat(totalBalance);
-            document.getElementById('totalBalance').innerText = totalBalanceAmount - withdrawInputAmount;
+
+            // var totalWithdraw = document.getElementById('totalWithdraw').innerText;
+            // var totalWithdrawNumber = parseFloat(totalWithdraw);
+            // var totalWithdrawAmount = totalWithdrawNumber + withdrawNumber;
+            // document.getElementById('totalWithdraw').innerText = totalWithdrawAmount
+            updateSpanTex('totalWithdraw', withdrawNumber)
+
+            // var totalBalance = document.getElementById('totalBalance').innerText;
+            // var totalBalanceAmount = parseFloat(totalBalance);
+            // totalBalanceAmount = totalBalanceAmount - withdrawNumber
+            // document.getElementById('totalBalance').innerText = totalBalanceAmount;
+            updateSpanTex('totalBalance', -1 * withdrawNumber) //(-1 diye gun korle jekono even Number negative hoye jay)//
         })
 
 
+        function getInputNumber(id) {
+            var amount = document.getElementById(id).value;
+            var amountNumber = parseFloat(amount);
+            return amountNumber;
+        }
+        function updateSpanTex(id, depositNumber) {
+            var current = document.getElementById(id).innerText;
+            var currentNumber = parseFloat(current);
+            var total = depositNumber + currentNumber;
+            document.getElementById(id).innerText = total;
+        }
     </script>
 
 
