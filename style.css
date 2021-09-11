@@ -1,0 +1,23 @@
+body {
+    padding: 100px;
+}
+.bankTitle{
+    text-align: center;
+}
+#loginArea{
+
+}
+.submitArea{
+    margin: 50px;
+    padding: 30px;
+    border-radius: 10px ;
+    box-shadow: 5px 5px 10px gray;
+}
+.result{
+    margin: 50px;
+    padding: 30px;
+    border-radius: 10px;
+}
+#transectionArea{
+    display: none;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SABIKUN NAHAR BANK</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="loginArea">
+        <h1 class="bankTitle">Welcome to Sabikun Nahar Bank</h1>
+        <div class="submitArea">
+            <h3>Log in</h3>
+            <input type="email" placeholder="enter your email" class="form-control" name="email">
+            <br>
+            <input type="password" placeholder="password" class="form-control" name="password">
+            <br>
+            <button id="loginBtn" class="btn btn-success">Enter</button>
+        </div>
+    </div>
+
+    <div id="transectionArea">
+        <div class="row align-items-center">
+            <section class="result col bg-primary">
+                <h3>Deposit</h3>
+                <h1>$ <span id="totalDeposit">00</span> </h1>
+            </section>
+            <section class="result col bg-info">
+                <h3>Withdraw</h3>
+                <h1>$ <span id="totalWithdraw">00</span></h1>
+            </section>
+            <section class="result col bg-success">
+                <h3>Balance</h3>
+                <h1>$ <span id="totalBalance">2200</span></h1>
+            </section>
+        </div>
+        <div class="row align-items-center">
+            <section class="submitArea col ">
+                <h3>Deposit</h3>
+                <input id="depositInput" type="number" name="" class="form-control" min="0"
+                    placeholder="$ Amount you want to deposit">
+                <br>
+                <button id="depositBtn" class="btn btn-success">Deposit</button>
+            </section>
+            <section class="submitArea col">
+                <h3>Withdraw</h3>
+                <input id="withdrawInput" type="number" name="" class="form-control" min="0"
+                    placeholder="$ Amount you want to Withdraw">
+                <br>
+                <button id="withdrawBtn" class="btn btn-success">Withdraw</button>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // login button click handler
+        var loginBtn = document.getElementById('loginBtn');
+        loginBtn.addEventListener('click', function () {
+            document.getElementById('loginArea').style.display = "none"
+            document.getElementById('transectionArea').style.display = "block"
+        })
+
+
+        // deposit button click handler
+
+        var depositBtn = document.getElementById('depositBtn');
+        depositBtn.addEventListener('click', function () {
+            var depositInput = document.getElementById('depositInput').value;
+            var depositNumber = parseFloat(depositInput);
+            var totalDeposit = document.getElementById('totalDeposit').innerText;
+            var totalDepositAmount = parseFloat(totalDeposit);
+            totalDepositAmount = depositNumber + totalDepositAmount;
+            document.getElementById('totalDeposit').innerText = totalDepositAmount
+            document.getElementById('depositInput').value = '';
+            var totalBalance = document.getElementById('totalBalance').innerText;
+            var totalBalanceAmount = parseFloat(totalBalance);
+            document.getElementById('totalBalance').innerText = depositNumber + totalBalanceAmount;
+        })
+
+        // withdraw button click handler
+        var withdrawBtn = document.getElementById('withdrawBtn');
+        withdrawBtn.addEventListener('click', function () {
+            var withdrawInput = document.getElementById('withdrawInput').value;
+            var withdrawInputAmount = parseFloat(withdrawInput);
+            document.getElementById('withdrawInput').value = ''
+            var totalWithdraw = document.getElementById('totalWithdraw').innerText;
+            var totalWithdrawAmount = parseFloat(totalWithdraw);
+            document.getElementById('totalWithdraw').innerText = withdrawInputAmount + totalWithdrawAmount
+            var totalBalance = document.getElementById('totalBalance').innerText;
+            var totalBalanceAmount = parseFloat(totalBalance);
+            document.getElementById('totalBalance').innerText = totalBalanceAmount - withdrawInputAmount;
+        })
+
+
+    </script>
+
+
+</body>
+
+</html>
